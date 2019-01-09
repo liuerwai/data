@@ -1,0 +1,16 @@
+jdbcUrl:jdbc:mysql://localhost:3306/liuds
+user:
+password
+driverclass
+minPollSize
+maxPoolSize
+maxIdleTime
+acquireIncrement
+maxStatements
+initialPoolSize
+acquireRetryAttempts
+acquireRetryDelay
+breakAfterAcquireFailure //当连接不上数据库时 关闭数据源
+testConnectionOnCheckOut // 测试连接
+idleConnectionTestPeriod // 测试连接间隔
+checkoutTimeout // 配置当连接池所有连接用完时应用程序getConnection的等待时间。为0则无限等待直至有其他连接释放或者创建新的连接

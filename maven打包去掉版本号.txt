@@ -1,0 +1,4 @@
+maven打包去掉版本号
+<build>
+        <finalName>wonder</finalName>
+</build>		

@@ -1,0 +1,10 @@
+1，pom配置
+   打包类型设置为 war
+   增加dependency spring-boot-startar-tomcat <scope>provide</scope>
+2, 程序启动类
+    启动类继承 SpringBootServletInitializer
+     启动类重写 SpringBootServletInitializer中的Configure(SpringApplicationBuilder builder)	
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(DemoApplication.class);
+    }
+3, 用maven的命令打包 clean compile package	

@@ -1,0 +1,28 @@
+北京环境
+公网
+jira：http://jira.ccp.ccod.com:2221/
+confluence：http://confluence.ccp.ccod.com:2220/
+gitlab：http://gitlab.ccp.ccod.com:2222/
+
+内网
+gitlab：http://10.130.24.100
+confluence：http://10.130.1.65:8090/
+jira：http://10.130.24.36:8089/secure/Dashboard.jspa
+maven仓库:http://10.130.24.253:8081/nexus
+
+
+成都环境
+gitlab:
+内网  http://10.132.10.10/
+公网  http://171.217.92.127:53080/
+
+SVN:
+内网  svn://10.132.10.250:3690
+公网 svn://171.217.92.127:3690
+
+打印机：
+10.132.20.6	   test/qnsoft
+
+vpn  211.103.182.34:999
+
+WIFI	channelsoft01/qnsoft12345

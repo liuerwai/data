@@ -1,0 +1,12 @@
+﻿怎么实现redis分布式锁？
+	锁是互斥的，获取的时候用reids命令 set if not exists，实现。如果命令返回1，表示获取锁成功。
+	SET resource_name my_random_value NX PX 30000
+再给锁加上一个失效时间，保证锁能被释放。给value设置一个自己知道的值，在释放锁的时候用到。
+释放锁的时候用命令 deal,删除key。在删除之前对比一下key的值是否和自己设置的值一样，否则就不删除。
+这些操作为了保证原子性，就写在lua脚本里。
+
+if redis.call("get",KEYS[1]) == ARGV[1] then
+    return redis.call("del",KEYS[1])
+else
+    return 0
+end

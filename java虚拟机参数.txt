@@ -1,0 +1,3 @@
+-XX:+HeapDumpOnOutOfMemoryError 保存内存快照
+-XX:HeapDumpPath
+-Xmx=18m

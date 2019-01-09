@@ -1,0 +1,4 @@
+Java 反射
+getMethods和getDelceardMethod 区别：
+getMethods 可以获取 父类，自己类，的公共方法。
+getDecleardMethod 可以获取自己类的所有方法。

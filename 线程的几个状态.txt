@@ -1,0 +1,5 @@
+﻿suspend 挂起，在resume前，都不会使用CPU资源。不会释放锁。（一般方法）
+sleep 睡一会，不执行，不会释放锁（静态方法）
+Yield 放弃当前的cpu执行器（静态方法）
+join 等待调用thread结束（一般方法）
+wait Object的方法，释放当前锁，前提是得到这个锁，所以必须写在同步方法里，等待nitify.

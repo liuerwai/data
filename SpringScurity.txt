@@ -1,0 +1,46 @@
+1,pom
+spring-boot-starter-secrity
+2,http config
+继承 WebSecurityConfigurerAdapter
+使用注解 @Configuration
+重写 config(HttpSecurity http)
+	http.loginPath("/login.html") // 设置登录页
+	http.loginProcessingUrl("/user/login") // 设置处理请求url
+	http.authorizeRequest().antMatchers("/login.html").permitAll() // 授权login.html被所有用户访问
+	http.sessionManager().sessionCreationPolicy(SessionCreationPlolcy.NEVER) //security不创建session
+	http.sessionManager.maximumSessions(1) // 每个用户保存最多保存1个
+重写 config(AuthenticationManagerBuilder auth)
+    auth.userDetailService(实现UserDetailService接口的类)； // 根据 username查询用户（username,password,listAuthorized）
+3,method config	
+继承 GlobalMethodSecurityConfiguration
+使用注解 @Configuration @EnableGlobalMethodSecurity(securedEaable = true, prePostEnable = true)
+@securable @PreAuthenrize @PostAuthrize @PreFilter @PostFilter
+使用hasPermission方法
+实现 PermissionEvaluator接口
+重写 hasPermission(Authentication, targetObject, permissionObject) 方法；
+     targetObject表示 传过来的参数，permissionObject 表示权限
+在method config中重写createExpressHandler方法
+	protected MethodSecurityExpressionHandler createExpressionHandler() {
+        DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
+        handler.setPermissionEvaluator(new MyPermissionEvaluator());
+        return handler;
+    }
+	 
+	 
+
+
+	
+	
+3,csrf 跨站攻击 用户在目标网站登录未退出，钓鱼网站诱惑用户发送请求到目标网站，实施攻击。
+  防止方法：目标网站发送csrfToken给用户，用户请求时需要这个token，否则认证失败。
+4,Session Fixation Attack 会话固定攻击 攻击者在目标网站获取一个未验证的匿名sessionid,然后
+	诱惑用户用该匿名sessionId登录，验证，攻击者再用这个认证后的sessionid冒充用户进行非法操作。
+  防止方法：用户登录后创建一个新的session,并将原来的匿名session删除
+
+
+
+
+
+	
+	
+antMatchers /**/ 任意路径

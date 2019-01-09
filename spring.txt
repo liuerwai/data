@@ -1,0 +1,11 @@
+@Bean 创建bean 
+@Qualifier 合格者
+@Primary 主要
+@ConfigurationProperties 结构 属性 属性绑定
+@SpringBootApplication : @Configuration @CompoentScan @EnableAotoConfiguration
+@RunWith(SpringJUnit4ClassRunner.class, SpringRunner.class) 运行类
+@ContextConfiguration 应用上下文
+@WebAppConfiguration web环境应用上下文
+@SpringBootTest
+SpringBootServletInitializer
+@PostConstruct

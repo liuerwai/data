@@ -1,0 +1,11 @@
+mvn install:install-file -DgroupId=channelsoft -DartifactId=cri -Dversion=1.0 -Dpackaging=jar -Dfile=f:\cri.jar
+
+mav pom dependency里属性scope,
+值有： 	compile(默认)
+		test test用到jar包
+		runtime 运行时用到jar包
+		system （指定systemPath:比如：<systemPath>${project.basedir}/WebRoot/WEB-INF/lib/fastdfs-client-java-1.24.jar</systemPath>）
+		provide jar 由外部环境提供，不打包，但是 compile，test需要用到
+		
+maven 打包后的包名去掉版本号
+       在<build> <finalName>name</finalName> </build>		

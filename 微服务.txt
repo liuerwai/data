@@ -1,0 +1,14 @@
+安全：
+	验证（SpringSecurity authentication）
+	授权(SpringSecrity authorize)
+	凭据管理和传播
+	
+理念：
+	让我们的系统尽可能快地响应变化
+	
+	any organization that designs a system will inevitably produce a design whose structure
+	is a copy of the organization's communication structure.
+
+Spring Boot 
+  SpringBootJpa 继承 JpaRepository<Class t, Object Id>
+  

@@ -1,0 +1,3 @@
+java web获取文件路径
+获取webapp路径：request.getSession().getServletContext().getRealPath("/");
+获取webapp/WEB-INFO/class路径 this.getClass().getClassLoader().getResource().getPath();

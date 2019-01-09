@@ -1,0 +1,30 @@
+Zero-Copy
+一个典型的web服务器传送静态文件（如CSS,JS,图片）的过程如下：
+	read(file, temp_buf, len);
+	write(socket, temp_buf, len);
+	首先调用read将文件从磁盘读取到temp_buf,然后调用write，将temm_buf写入到socket，
+	在这个过程中会出现四次数据copy,过程如下：
+	 1，当调用read系统调用时，通过DMA(direct memory access) 将数据copy到内核模式。
+	 2，然后由cpu控制将内核模式数据copy到用户模式下的buff中。
+	 3，read调用完成后，write调用首先将用户模式下的buffer中的数据copy到内核模式的socket buffer中
+	 4，最后通过DMA copy将内核模式下的socket buffer中的数据copy到网卡设备中传送。
+ 
+zero-copy&sendfile()
+	 linux2.1版本内核引入了sendfile（）函数，用于将文件通过socket传送。
+	 sendfile(socket,file, len)
+	 改函数通过一次系统调用完成了文件的传输，减少了read/write方式的模式切换。此外更是减少了数据的copy,sendFile的详细过程如下
+	 1,首先通过DMA copy将数据读取到kernel buffer中
+	 2,然后通过CPU copy将数据从kernel buffer中copy到socket buffer中copy到socket
+	 3，最终通过DMA copy将socket buffer中数据copy到网卡buffer中发送
+	 sendfile与read/write方式相比，少了 一次模式切换一次CPU copy。
+	但是从上述过程中也可以发现从kernel buffer中将数据copy到socket buffer是没必要的。
+	为此，Linux2.4内核对sendfile做了改进，如下：
+	 1。DMA copy将磁盘数据copy到kernel buffer中
+	 2。向socket buffer中追加当前要发送的数据在kernel buffer中的位置和偏移量
+	 3。DMA gather copy根据socket buffer中的位置和偏移量直接将kernel buffer中的数据copy到网卡上。
+	经过上述过程，数据只经过了2次copy就从磁盘传送出去了。
+
+Java NIO中的transferTo()
+	FileChannel.transferTo(long position, long count, WriteableByteChannel target)
+	方法将当前通道中的数据传送到目标通道target中，在支持zero_copy的linux系统中，trransferTo()的实现依赖于sendFile()调用。
+ 

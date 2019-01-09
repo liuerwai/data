@@ -1,0 +1,53 @@
+nio
+	NIO主要有三大核心部分，Channel(通道)，Buffer(缓冲区)， Selector。
+	传统IO基于字节流和字符流进行操作，而NIO基于Channel和Buffer（缓冲区）进行操作，
+	数据总是从通道读取到缓冲区，或者从缓冲区写入到通道中。Selecter(选择区)用于监听多个
+	通道事件（比如连接打开，数据到达）。因此单个线程可以监听多个数据通道。
+Channel
+	FileChannel 文件
+	DatagramChannel udp
+	SocketChannel tcp
+	ServerSocketChannel tcp
+	channel.read(Buffer buffer) 将数据读取到buffer里
+	channel.write(Buffer buffer) 将数据从buffer里读取到channel里。
+Buffer
+	buffer.flip(){
+		limit = position;
+		position = 0;
+		mark = -1;
+	}
+	buffer.clear(){
+		limit = capacity;
+		position = 0;
+		remark = -1;
+	}
+	buffer.rewind(){
+		position = 0;
+		remark = -1;
+	}
+Selector
+	Selector运行单线程处理多个Channel,如果你的应用打开了多个通道，但是每个连接的流量都很低，使用Selector就会很方便。
+	Selector的创建：Selector selector = Selector.open();
+	为了将Channel和Selector配合使用，必须将Channel注册到Selector上，通过SelectableChannel.register()方法来实现，沿用案例5中的部分代码：
+            ssc= ServerSocketChannel.open();
+            ssc.socket().bind(new InetSocketAddress(PORT));
+            ssc.configureBlocking(false);
+            ssc.register(selector, SelectionKey.OP_ACCEPT);
+	与Selector一起使用时，Channel必须处于非阻塞模式下。这意味着不能将FileChannel与Selector一起使用，因为FileChannel不能切换到非阻塞模式。而套接字通道都可以。
+	
+SelectionKey
+通过Selector选择通道
+	一旦向Selector注册了一或多个通道，就可以调用几个重载的select()方法。这些方法返回你所感兴趣的事件（如连接、接受、读或写）已经准备就绪的那些通道。换句话说，如果你对“读就绪”的通道感兴趣，select()方法会返回读事件已经就绪的那些通道。
+	下面是select()方法：
+	int select()
+	int select(long timeout)
+	int selectNow()
+	select()阻塞到至少有一个通道在你注册的事件上就绪了。
+	select(long timeout)和select()一样，除了最长会阻塞timeout毫秒(参数)。
+	selectNow()不会阻塞，不管什么通道就绪都立刻返回（译者注：此方法执行非阻塞的选择操作。如果自从前一次选择操作后，没有通道变成可选择的，则此方法直接返回零。）。
+	Set selectedKeys = selector.selectedKeys();
+	
+JAVA处理大文件，一般用BufferedReader,BufferedInputStream这类带缓冲的IO类，不过如果文件超大的话，更快的方式是采用MappedByteBuffer。	
+		
+		
+ 

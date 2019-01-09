@@ -1,0 +1,5 @@
+solr和es的比较：
+1，当实时建立索引时, Solr会产生io阻塞，查询性能较差 。
+2，随着数据量的增加，Solr的搜索效率会变得更低
+3，Solr 支持更多格式的数据，而 Elasticsearch 仅支持json文件格式；
+4，Solr 是传统搜索应用的有力解决方案，但 Elasticsearch 更适用于新兴的实时搜索应用。

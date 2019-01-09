@@ -1,0 +1,19 @@
+HashMap实现了map接口。
+	HashMap维护着一个Entry数组，负载因子，容量。
+	entry对象包含：key, value，hash, next(指向下一个ertry对象)
+	在put(key, value)的时候，先计算key的hash值，找到对应数组下标，
+	如果数组下标对于的值为空，就将数组下标的值设置为新的Entry对象。
+	如果已经有值了，就将新的Entry对象放在链表的末尾。
+	在java1.8版本后，如果链表的长度超过8，就把链表改为红黑树。
+	如果size <= 容量*负载因子，就进行扩容，容量变为原来的两倍，所有的值都进行重新映射。
+	可以在初始化HashMap的时候设置容量，最好是2的N次方。
+	HashMap的key,value都可以为空，下标为0。
+HashTable实现了Map接口，继承Dictionary.
+	HashTable基本和HashMap实现差不多，但是，它的方法基本都是同步的，所以是线程安全的。
+	HashTable的Key,value都不能为空。
+ConcurrentHashMap也是线程安全的,concurrentHashMap比hashMap增加了segment数组,segment是entry数组，
+可以近似的认为ConcurrentHashMap里包含了多个hashMap，操作ConcurrentHashMap时，只锁其中的某一个segment,
+这样就提高的并发的效率。
+
+	
+	

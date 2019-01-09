@@ -1,0 +1,68 @@
+﻿1 防火墙
+	CentOS6关闭防火墙使用以下命令，
+		//临时关闭
+		service iptables stop
+		//禁止开机启动
+		chkconfig iptables off
+	
+	CentOS7中关闭防火墙使用以下命令，
+		//临时关闭
+		systemctl stop firewalld
+		//禁止开机启动
+		systemctl disable firewalld
+	
+2 查看日志
+	tail -f control+s 暂停 contorl+p 继续
+	tail -n 1000 从1000行开始
+	tail -n 1000|grep tail -n 10
+	
+3 查看变量
+    echo $PATH
+4 解压
+    zip文件用 unzip 命令
+    tar文件用 tar -xvzf	
+	其中：x 代表解压
+	      v 代表显示解压过程
+		  z 代表调用gzip来解压tar.gz格式文件
+		  f 代表解压文件名字
+		  j 代表调用bzip2来解压tar.bz2格式的文件
+
+5 usr 代表 unix system resource
+6 ~代表登录用户的根目录 /代表根目录
+
+7 ln -s /usr/python/bin/python3 /usr/bin/python3 
+8 查找文件
+	find / -name python*
+	
+9 查看系统版本
+  查看内核版本：uname -a
+  查看系统版本：lsb_release -a
+10 rpm 查看安装的程序
+   rpm -qa|grep yum
+11 进程 
+   ps -ef|grep java  
+12 查看cpu使用情况
+   top 
+   q 是退出
+13 查看内存使用情况
+   free
+14 删除文件 rm
+   删除文件夹 rm -r   rm-rf
+15 传文件	传入：rz -y 
+			传出：sz
+	安装 yum install lrzsz		
+16 查看磁盘情况 df -h	
+
+17 source 将数据放进系统变量中	
+
+18 vim 命令	G底端
+			gg头部
+			数字 +enter 跳转行
+			/ 查询 n 查询下一个 N表示上一个
+			yy 复制当前一行
+			p 粘贴到下一行
+			u 撤销
+			ctrl + r 重做上一个被撤销的擦做
+			. 重复前一个操作
+			
+   

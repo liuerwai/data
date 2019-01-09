@@ -1,0 +1,16 @@
+测试服务器： 10.130.29.112:22 root  2292064
+es服务器：10.132.10.206:22 es qnsoft123456
+es服务器：10.132.10.206:22 root SCCD-QNSOFT-201804
+华润服务器215 10.130.41.215 weblogic weblogic
+华润服务器214 10.130.41.214 root ccodccod
+
+
+启动命令：
+mysql: 	service mysqld start
+		service mysqld stop
+
+mongodb: mongod -f mongodb.cnf	
+		 mongod -dbpath /data -logpath mongo.log -logappend -fork -port 27017
+
+redis:	redis-server ./redis.conf
+		redis-cli -p 6380

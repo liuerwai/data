@@ -1,0 +1,4 @@
+1.Java的字节流
+   InputStream是所有字节输入流的祖先，而OutputStream是所有字节输出流的祖先。
+2.Java的字符流
+  Reader是所有读取字符串输入流的祖先，而writer是所有输出字符串的祖先。

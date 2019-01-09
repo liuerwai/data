@@ -1,0 +1,5 @@
+﻿介绍一下redis事务：
+	redis事务可以认为时一串redis命令的集合。在执行命令集合时，不会插入执行其它命令。
+	如果这些命令中出现错误，不会回滚，一直执行下去。（Redis 2.6.5 以后对于出现语法错误的操作都不会执行）
+	redis命令有：muilt,exec,discard,watch, unwatch。
+	watch，命令可以监视一个key,如果在key的值改变，事务将不会执行。
