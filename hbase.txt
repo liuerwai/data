@@ -1,0 +1,31 @@
+高可靠性 高性能 面向列 可伸缩的分布式存储系统
+利用 hadoop hdfs作为文件存储系统 hadoop mapreduse处理数据 zookeeper 协同服务
+Hbase集群中的角色：
+	master
+	regionServer
+	zookeeper
+rowkey(行键) 列族 列 键值对 时间戳
+保存数据最后的N个版本 保存最近一段时间的版本
+cell 由row key 和 列族 决定 cell 有version 即时间戳
+byte存储
+
+client 使用rpc与master regionServer通信
+client 与master进行管理类操作
+client 与 regionserver 进行数据读写操作
+
+zokeeper 存储 root表地址 hmaster地址
+regionserver 注册到zookeeper中 master感知regionserver的健康状况
+zookeeper 避免master的单点问题
+
+master 
+	管理用户对表的增删改查操作
+	管理regionserver的负载均衡 调整region分布
+	region spilt后 负责新的region分布
+	regionserver停机后 负责失效regionserver上region迁移
+
+
+	
+
+Hlog（write ahead log）日志预写
+Region
+client->Zookeeper->ROOT表->.META.表->RegionServer->Region->MemStore->BlockCache->StoreFile->StoreFile->BlockCache

@@ -1,0 +1,50 @@
+阿里巴巴 开源 基于java 分布式服务框架 分布式RPC
+三个关键功能：基于接口的远程调用 容错与负载均衡 服务自动注册与发现
+1，暴露服务到本地
+2，暴露服务到远程
+3，启动netty服务
+4，连接zookeeper
+5, 注册到zookeeper
+6, 监听zookeeper中消费服务。
+
+协议：dobbo 长连接，小数据，大并发 服务消费者远大于服务提供者
+	  rmi: 短连接 数据大小混合 消费者和生产者数量差不多 可传文件
+	  hessian http 可传文件
+	  http
+		webservice
+		thirft
+		redis
+		memcached
+		
+主要配置：
+			配置应用信息
+			注册中心相关信息
+			服务协议
+			所有暴露服务缺省值
+			暴露服务
+			引用服务缺省值
+			引用服务
+启动时回检查引用服务是否已经存在，不存在报错。		
+服务容器：
+		spring container
+		jetty container
+		log4j container
+角色 
+		provider
+		consumer
+		registry
+		monitor
+		container
+		
+						registry
+		2,subscribe 3,notify				                   1,register
+			
+			consumer	  4,invoke						provider
+												container
+													
+						5,count
+						moniter	
+
+注册中心 默认 zookeeper						
+			
+	  
