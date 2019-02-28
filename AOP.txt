@@ -1,5 +1,7 @@
 ﻿AOP Aspect Oriented Program
-面向切面编程，是指在不改变类的情况下，拦截某些方法的调用，在调用前或者调用后进行代码编写（weave 织入）。或者使类具有未实现的接口的功能（introception 引入）。
+面向切面编程：
+	是指在不改变类的情况下，拦截某些方法的调用，在调用前或者调用后进行代码编写（weave 织入）。
+	或者使类具有未实现的接口的功能（introception 引入）。
 面向切面的实现原理：静态代理，JVM动态代理，CGLIB类代理。
 四个增强，beforeAdvice(前置增强), afterAdvice(后置增强), aroundAdvice（环绕增强）, throwsAdvice（异常增强）, introductionAdvice（引入增强）。
 introception引入增强的实现原理：创建一个类，继承要增强的类，并且实现需要增强的接口。
